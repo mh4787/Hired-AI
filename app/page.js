@@ -251,7 +251,7 @@ export default function Home() {
 
         const stageTimer = setTimeout(() => {
           setLoadingStage((prev) => 
-            prev.includes("retrying") ? prev : "Analyzing resume with Gemini AI..."
+            prev.includes("retrying") ? prev : "Analyzing resume with Hired..."
           );
         }, 2000);
 
