@@ -1,0 +1,199 @@
+@import "tailwindcss";
+
+:root {
+  --background: #111111;
+  --foreground: #f0f0f0;
+  --tech-blue: #0077FF;
+  --tech-blue-deep: #0055CC;
+  --tech-blue-bright: #339FFF;
+  --surface: #1a1a1a;
+  --surface-light: #222222;
+  --border-color: #333333;
+  --text-muted: #999999;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-tech-blue: var(--tech-blue);
+  --color-tech-blue-deep: var(--tech-blue-deep);
+  --color-tech-blue-bright: var(--tech-blue-bright);
+  --color-surface: var(--surface);
+  --color-surface-light: var(--surface-light);
+  --color-border-color: var(--border-color);
+  --color-text-muted: var(--text-muted);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), 'Inter', system-ui, -apple-system, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #444444;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555555;
+}
+
+/* Drag and drop zone animations */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(0, 119, 255, 0.2), 0 0 30px rgba(0, 119, 255, 0.1);
+    border-color: rgba(0, 119, 255, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(0, 119, 255, 0.4), 0 0 50px rgba(0, 119, 255, 0.2);
+    border-color: rgba(0, 119, 255, 0.8);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out forwards;
+}
+
+.animate-fade-in-up-delay {
+  animation: fade-in-up 0.6s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-up-delay-2 {
+  animation: fade-in-up 0.6s ease-out 0.4s forwards;
+  opacity: 0;
+}
+
+.drop-zone-hover {
+  animation: pulse-glow 1.5s ease-in-out infinite;
+}
+
+.icon-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Extracted text container */
+.extracted-text-box {
+  scrollbar-width: thin;
+  scrollbar-color: #444444 #1a1a1a;
+}
+
+/* Gradient button shimmer on hover */
+.btn-shimmer {
+  background-size: 200% 100%;
+  transition: all 0.3s ease;
+}
+
+.btn-shimmer:hover {
+  background-position: right center;
+  box-shadow: 0 4px 20px rgba(0, 119, 255, 0.4);
+}
+
+/* Particle background effect */
+.bg-grid {
+  background-image: 
+    radial-gradient(circle at 1px 1px, rgba(255,255,255,0.03) 1px, transparent 0);
+  background-size: 40px 40px;
+}
+
+/* Dashboard Specific Styles */
+.glass-panel {
+  background: rgba(26, 26, 26, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+@keyframes scale-in {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-scale-in {
+  animation: scale-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Glow effects for dashboard cards */
+.glow-blue:hover {
+  box-shadow: 0 0 30px rgba(0, 119, 255, 0.1);
+}
+
+.glow-green:hover {
+  box-shadow: 0 0 30px rgba(0, 204, 102, 0.1);
+}
+
+.glow-orange:hover {
+  box-shadow: 0 0 30px rgba(255, 170, 0, 0.1);
+}
+
+/* Premium Tier Effects */
+.pro-glow {
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.4), 0 0 40px rgba(168, 85, 247, 0.2);
+}
+
+.pro-glow:hover {
+  box-shadow: 0 0 25px rgba(168, 85, 247, 0.6), 0 0 50px rgba(168, 85, 247, 0.3);
+}
+
+.text-blur-sm {
+  filter: blur(4px);
+  user-select: none;
+  opacity: 0.7;
+}
+
+.text-blur-md {
+  filter: blur(6px);
+  user-select: none;
+  opacity: 0.5;
+}
+
+.premium-overlay {
+  background: linear-gradient(to top, rgba(17, 17, 17, 0.9) 0%, rgba(17, 17, 17, 0.4) 100%);
+  backdrop-filter: blur(2px);
+}
+
