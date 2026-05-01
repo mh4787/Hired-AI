@@ -92,26 +92,7 @@ Respond ONLY with valid JSON matching this exact structure:
 RESUME:
 ${extractedText.substring(0, 5000)}`;
 
-        let result;
-        let retries = 3;
-        let delay = 1000;
-        for (let i = 0; i < retries; i++) {
-          try {
-            result = await model.generateContent(prompt);
-            break;
-          } catch (error) {
-            if (i === retries - 1) throw error;
-            const isRateLimitOrUnavailable = error.status === 429 || error.status === 503 || 
-              (error.message && (error.message.includes("429") || error.message.includes("503") || error.message.includes("Service Unavailable")));
-            if (isRateLimitOrUnavailable) {
-              console.log(`Gemini API overloaded. Retrying ${i + 1} after ${delay}ms...`);
-              await new Promise(resolve => setTimeout(resolve, delay));
-              delay *= 2;
-            } else {
-              throw error;
-            }
-          }
-        }
+        const result = await model.generateContent(prompt);
         const responseText = result.response.text();
 
         let cleanJson = responseText.trim();
@@ -151,15 +132,10 @@ ${extractedText.substring(0, 5000)}`;
             { error: "Server busy. API rate limit exceeded." },
             { status: 429 }
           );
-        } else if (aiError.status === 503 || (aiError.message && aiError.message.includes("503"))) {
-          aiAnalysis = {
-            error: "The AI service is currently experiencing high demand. Please try again in a few moments.",
-          };
-        } else {
-          aiAnalysis = {
-            error: "AI analysis failed. The text was extracted successfully.",
-          };
         }
+        aiAnalysis = {
+          error: "AI analysis failed. The text was extracted successfully.",
+        };
       }
     } else {
       aiAnalysis = {
